@@ -7,13 +7,16 @@ const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.overlay');
 const btnCloseModal = document.querySelector('.btn--close-modal');
 const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
+
 //// SELECTIONS
 const btnScrollTo = document.querySelector('.btn--scroll-to');
 const section1 = document.querySelector('#section--1');
+
 // Tabbed Component (Operations)
 const tabs = document.querySelectorAll('.operations__tab');
 const tabsContainer = document.querySelector('.operations__tab-container');
 const tabsContent = document.querySelectorAll('.operations__content');
+
 // Menu fade
 const nav = document.querySelector('.nav');
 
@@ -27,6 +30,7 @@ const closeModal = function () {
   modal.classList.add('hidden');
   overlay.classList.add('hidden');
 };
+
 ////////////////////////////
 ////// Open modal (Open account) buttons
 btnsOpenModal.forEach(btn => btn.addEventListener('click', openModal));
@@ -39,6 +43,7 @@ document.addEventListener('keydown', function (e) {
     closeModal();
   }
 });
+
 ////////////////////////////
 ///// Add smooth scroll
 btnScrollTo.addEventListener('click', function (e) {
@@ -63,6 +68,7 @@ btnScrollTo.addEventListener('click', function (e) {
   */
   section1.scrollIntoView({ behavior: 'smooth' });
 });
+
 ////////////////////////////
 // Page Navigation (smoth scroll to locations)
 /* works but use event deligation
@@ -84,6 +90,7 @@ document.querySelector('.nav__links').addEventListener('click', function (e) {
     document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
   }
 });
+
 ////////////////////////////
 //tabs.forEach(t => t.addEventListener('click', () => console.log('TAB')));
 tabsContainer.addEventListener('click', function (e) {
@@ -104,6 +111,7 @@ tabsContainer.addEventListener('click', function (e) {
     .querySelector(`.operations__content--${clicked.dataset.tab}`)
     .classList.add('operations__content--active');
 });
+
 ////////////////////////////
 ////// Menu fade animation -- Add hover over and blur others
 // make function for in and out
@@ -118,6 +126,7 @@ const handleHover = function (e) {
     });
   }
 };
+
 ////////////////////////////
 // Hover over
 nav.addEventListener('mouseover', handleHover.bind(0.5));
@@ -147,12 +156,14 @@ window.addEventListener('scroll', function (e) {
 // };
 // const observer = new IntersectionObserver(obsCallback, obsOptions);
 // observer.observe(section1);
+
 const header = document.querySelector('.header');
 const stickyNav = function (entries) {
   const [entry] = entries;
   if (!entry.isIntersecting) nav.classList.add('sticky');
   else nav.classList.remove('sticky');
 };
+
 const headerObserver = new IntersectionObserver(stickyNav, {
   root: null,
   threshold: 0,
@@ -174,6 +185,7 @@ const sectionObserver = new IntersectionObserver(revealSection, {
   root: null,
   threshold: 0.15,
 });
+
 // Add hidden class in JS
 allSelections.forEach(function (section) {
   sectionObserver.observe(section);
@@ -249,6 +261,7 @@ const slider = function () {
     goToSlide(curSlide);
     activateDot(curSlide);
   };
+  
   const prevSlide = function () {
     if (curSlide === 0) {
       curSlide = maxSlide - 1;
@@ -265,7 +278,9 @@ const slider = function () {
     activateDot(0);
     goToSlide(0);
   };
+  
   init();
+  
   // EVENT HANDELERS
   btnRight.addEventListener('click', nextSlide);
   btnLeft.addEventListener('click', prevSlide);
@@ -283,6 +298,7 @@ const slider = function () {
     }
   });
 };
+
 slider();
 
 // DOM lifecycle
